@@ -19,6 +19,11 @@ class NotesController < ApplicationController
     end
   end
 
+  def by_tag_name
+    @tags = Tag.find_by(name: params[:name])
+    render json: @tags, include: ['notes.tags', 'notes.user']
+  end
+
   private
 
   def note_params
